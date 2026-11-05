@@ -15,6 +15,16 @@ def row_to_task(row):
         "created_at": row["created_at"].isoformat(),
     }
 
+@app.route("/")
+def index():
+    return jsonify({"service": "first_flask_api", "endpoints": ["/books", "/books/<id>", "/stats"]})
+
+
+@app.route("/health")
+def health():
+    return jsonify({"status": "ok"}), 200
+
+    
 # ---------- GET /books  (list all) ----------
 @app.route("/books", methods=["GET"])
 def get_books():
